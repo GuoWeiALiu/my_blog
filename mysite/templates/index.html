@@ -1,0 +1,35 @@
+{#继承自base#}
+{% extends 'base.html' %}
+
+{#标题 显示在浏览器标签上的#}
+{% block title %}
+    首页
+{% endblock %}
+
+{#页面内使用到的资源，此处没有用到也可以不写#}
+{% block header %}
+{% endblock %}
+
+{#主体部分#}
+{% block content %}
+    <ul>
+{#        遍历文章#}
+        {% for article in articles %}
+            <li class="item">
+                <a href="{% url 'detail' article.id %}">
+
+                    <div class="title">
+                        {{ forloop.counter }}、{{ article.title }}
+                    </div>
+                </a>
+
+                <div class="info">
+                    本条目由{{ article.author }},发布于{{ article.pub_date }}
+                </div>
+
+
+            </li>
+        {% endfor %}
+
+    </ul>
+{% endblock %}

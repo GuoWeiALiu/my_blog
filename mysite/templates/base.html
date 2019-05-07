@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+{#加载静态文件#}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+{#    标题占位#}
+    <title>{% block title %} {% endblock %}</title>
+
+{#    加载static/css下的样式表#}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+{#    其他放在头部的文件占位，留给子模版重写，比如js css#}
+    {% block header %}
+    {% endblock %}
+
+</head>
+<body>
+<header>
+{#    导航#}
+    <nav class="nav">
+        <ul>
+            <li><a href="/">首页</a></li>
+            <li><a href="/">技术</a></li>
+            <li><a href="/">资讯</a></li>
+            <li><a href="/">关于</a></li>
+        </ul>
+
+{#    如果用户没有登录显示登录 否则 显示用户名和登出#}
+{#        {% if not request.user.is_authenticated %}#}
+{#            <a style="float: right; color: white;text-decoration: none" href="{% url 'login' %}">登录/注册</a>#}
+{#        {% else %}#}
+{#            <div style="float: right;color: white;">#}
+{#                {{ user.username }}#}
+{#                <a style="color: white;text-decoration: none" href="{% url 'logout' %}">登出</a>#}
+{#            </div>#}
+{##}
+{#        {% endif %}#}
+    </nav>
+
+</header>
+
+{## 页面主体部分，留给子模版重写#}
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+
+{#页面底部的说明#}
+<footer>
+
+    <div class="footer">
+        COPYRIGHT@2019 litets.com
+        <div>power by <a target="_blank" href="https://litets.com">litets.com</a></div>
+    </div>
+</footer>
+
+</body>
+</html>
